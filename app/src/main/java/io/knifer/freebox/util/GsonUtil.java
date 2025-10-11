@@ -3,8 +3,6 @@ package io.knifer.freebox.util;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-
 /**
  * JSON工具类
  *
@@ -27,8 +25,12 @@ public class GsonUtil {
         return gson.fromJson(jsonElement, clazz);
     }
 
-    public static  <T> T fromJson(String objectStr, TypeToken<T> type) {
+    public static <T> T fromJson(String objectStr, TypeToken<T> type) {
         return gson.fromJson(objectStr, type.getType());
+    }
+
+    public static <T> T fromJson(JsonElement jsonElement, TypeToken<T> type) {
+        return gson.fromJson(jsonElement, type.getType());
     }
 
     public JsonElement toJsonTree(Object object) {

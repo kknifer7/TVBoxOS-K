@@ -23,6 +23,7 @@ import io.knifer.freebox.websocket.handler.impl.DeletePlayHistoryHandler;
 import io.knifer.freebox.websocket.handler.impl.GetCategoryContentHandler;
 import io.knifer.freebox.websocket.handler.impl.GetDetailContentHandler;
 import io.knifer.freebox.websocket.handler.impl.GetHomeContentHandler;
+import io.knifer.freebox.websocket.handler.impl.GetLivesHandler;
 import io.knifer.freebox.websocket.handler.impl.GetMovieCollectedStatusHandler;
 import io.knifer.freebox.websocket.handler.impl.GetMovieCollectionHandler;
 import io.knifer.freebox.websocket.handler.impl.GetOnePlayHistoryHandler;
@@ -59,7 +60,8 @@ public class WSClient extends WebSocketClient {
                 new SaveMovieCollectionHandler(service),
                 new DeleteMovieCollectionHandler(service),
                 new GetOnePlayHistoryHandler(service),
-                new GetMovieCollectedStatusHandler(service)
+                new GetMovieCollectedStatusHandler(service),
+                new GetLivesHandler(service)
         );
         reconnectFlag = new AtomicBoolean(false);
     }

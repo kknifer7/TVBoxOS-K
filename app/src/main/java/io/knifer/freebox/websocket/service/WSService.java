@@ -725,6 +725,14 @@ public class WSService {
         ));
     }
 
+    public void sendLives(String topicId) {
+        send(Message.oneWay(
+                MessageCodes.GET_LIVES_RESULT,
+                ApiConfig.get().getLives(),
+                topicId
+        ));
+    }
+
     private void send(Object obj) {
         connection.send(GsonUtil.toJson(obj));
     }

@@ -8,6 +8,9 @@ import android.util.Base64;
 import com.github.catvod.crawler.JarLoader;
 import com.github.catvod.crawler.JsLoader;
 import com.github.catvod.crawler.Spider;
+
+import io.knifer.freebox.model.c2s.FreeBoxLive;
+import io.knifer.freebox.util.GsonUtil;
 import io.knifer.tvboxk.osc.base.App;
 import com.github.tvbox.osc.bean.LiveChannelGroup;
 import com.github.tvbox.osc.bean.IJKCode;
@@ -25,6 +28,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.model.Response;
@@ -55,6 +59,7 @@ public class ApiConfig {
     private LinkedHashMap<String, SourceBean> sourceBeanList;
     private SourceBean mHomeSource;
     private ParseBean mDefaultParse;
+    private List<FreeBoxLive> lives;
     private List<LiveChannelGroup> liveChannelGroupList;
     private List<ParseBean> parseBeanList;
     private List<String> vipParseFlags;
@@ -371,7 +376,13 @@ public class ApiConfig {
             if (mDefaultParse == null)
                 setDefaultParse(parseBeanList.get(0));
         }
-        // 直播源
+        /* 直播源 */
+        // FreeBox：解析lives配置
+        JsonElement livesElm = infoJson.get("lives");
+        if (livesElm != null) {
+            lives = GsonUtil.fromJson(livesElm, new TypeToken<List<FreeBoxLive>>(){});
+        }
+        // 读取频道列表
         liveChannelGroupList.clear();           //修复从后台切换重复加载频道列表
         try {
             JsonObject livesOBJ = infoJson.get("lives").getAsJsonArray().get(0).getAsJsonObject();
@@ -531,6 +542,10 @@ public class ApiConfig {
                 ijkCodes.get(0).selected(true);
             }
         }
+    }
+
+    public List<FreeBoxLive> getLives() {
+        return lives;
     }
 
     public void loadLives(JsonArray livesArray) {
