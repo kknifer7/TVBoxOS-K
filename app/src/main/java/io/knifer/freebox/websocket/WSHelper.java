@@ -62,15 +62,20 @@ public final class WSHelper {
 
     public static boolean connectBlocking(String address, int port, boolean safeFlag) {
         if (!initFlag) {
-            throw new IllegalStateException("WSHelper not init");
+            LOG.e("WSHelper not init");
+
+            return false;
         }
         if (isOpen()) {
-            throw new IllegalStateException("WebSocket Service already connected");
+            LOG.e("WebSocket Service already connected");
+
+            return false;
         }
         createClient(address, port, safeFlag);
         try {
             return client.connectBlocking();
-        } catch (InterruptedException ignored) {
+        } catch (Exception e) {
+            LOG.e("unknown exception: " + e.getMessage());
             return false;
         }
     }
