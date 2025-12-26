@@ -4,7 +4,9 @@
 
 基于项目：
 
-- [q215613905/TVBoxOS](https://github.com/q215613905/TVBoxOS)
+- https://github.com/q215613905/TVBoxOS
+
+**❗注意：本项目已经被 [影视-K](https://github.com/kknifer7/TV-K) 项目取代，若你的设备是古董机（Android 4及以下），那么你可以使用本项目搭配 [FreeBox 1.5.0版本](https://github.com/kknifer7/FreeBox/releases/tag/v1.5.0) ，除此之外你没有理由继续使用本项目**
 
 **本软件完全、永远免费、开源，如果您下载或使用了本软件，视为您已阅读并同意本软件的[免责声明](https://github.com/kknifer7/TVBoxOS-K/raw/refs/heads/main/doc/%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E.txt)**
 
